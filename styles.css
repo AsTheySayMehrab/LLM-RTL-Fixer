@@ -6,7 +6,7 @@
     font-style: normal;
 }
 
-/* Default Variables (will be overridden by JS) */
+/* Global Variables */
 :root {
     --ai-rtl-font-size: 16px;
     --ai-rtl-line-height: 1.8;
@@ -14,7 +14,8 @@
 
 /* 
    Main RTL Class
-   Applied to containers with Persian content 
+   Uses "unicode-bidi: plaintext" or "direction: rtl" depending on strictness needed.
+   Here we enforce RTL but isolate children.
 */
 .ai-rtl-active {
     direction: rtl !important;
@@ -25,9 +26,9 @@
 }
 
 /* 
-   Content Isolation
-   Protects Code blocks, Math formulas, and English words within Persian text
-   from rendering incorrectly.
+   ISOLATION LOGIC (CRITICAL FOR CODE/ENGLISH)
+   This ensures that any English text, code, or formula inside the Persian block
+   is treated as a separate LTR island.
 */
 .ai-rtl-active code,
 .ai-rtl-active pre,
@@ -45,7 +46,7 @@
     font-family: Consolas, Monaco, 'Courier New', monospace !important;
 }
 
-/* Fix for Block Math Display */
+/* Fix for Block Math Display (Center alignment) */
 .ai-rtl-active .katex-display,
 .ai-rtl-active .math-display,
 .ai-rtl-active mjx-container[display="true"] {
@@ -55,7 +56,7 @@
     margin: 10px 0 !important;
 }
 
-/* List Fixes */
+/* List Fixes (Bullets on the right) */
 .ai-rtl-active ul, 
 .ai-rtl-active ol {
     padding-right: 25px !important;
