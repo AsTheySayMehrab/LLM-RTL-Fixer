@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "AI RTL Fixer",
+  "version": "1.0.0",
+  "description": "Fixes RTL direction and font rendering for Persian/Arabic in AI chats (ChatGPT, Claude, Gemini, etc).",
+  "author": "Mehrab Mahmoudifar",
+  "icons": {
+    "48": "icon.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "RTL Settings"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["fonts/Vazirmatn.woff2"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://chatgpt.com/*",
+        "*://claude.ai/*",
+        "*://gemini.google.com/*",
+        "*://aistudio.google.com/*",
+        "*://copilot.microsoft.com/*",
+        "*://www.bing.com/*",
+        "*://www.perplexity.ai/*",
+        "*://chat.deepseek.com/*",
+        "*://huggingface.co/*",
+        "*://poe.com/*"
+      ],
+      "css": ["styles.css"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

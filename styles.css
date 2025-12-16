@@ -1,0 +1,71 @@
+/* Font Definition */
+@font-face {
+    font-family: 'CustomVazir';
+    src: url('fonts/Vazirmatn.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Default Variables (will be overridden by JS) */
+:root {
+    --ai-rtl-font-size: 16px;
+    --ai-rtl-line-height: 1.8;
+}
+
+/* 
+   Main RTL Class
+   Applied to containers with Persian content 
+*/
+.ai-rtl-active {
+    direction: rtl !important;
+    text-align: right !important;
+    font-family: 'CustomVazir', 'Segoe UI', Tahoma, sans-serif !important;
+    font-size: var(--ai-rtl-font-size) !important;
+    line-height: var(--ai-rtl-line-height) !important;
+}
+
+/* 
+   Content Isolation
+   Protects Code blocks, Math formulas, and English words within Persian text
+   from rendering incorrectly.
+*/
+.ai-rtl-active code,
+.ai-rtl-active pre,
+.ai-rtl-active span[class*="code"],
+.ai-rtl-active div[class*="code"],
+.ai-rtl-active span[class*="math"],
+.ai-rtl-active .katex,
+.ai-rtl-active .MathJax,
+.ai-rtl-active mjx-container,
+.ai-rtl-active div[dir="ltr"],
+.ai-rtl-active span[lang="en"] {
+    direction: ltr !important;
+    unicode-bidi: isolate !important;
+    text-align: left !important;
+    font-family: Consolas, Monaco, 'Courier New', monospace !important;
+}
+
+/* Fix for Block Math Display */
+.ai-rtl-active .katex-display,
+.ai-rtl-active .math-display,
+.ai-rtl-active mjx-container[display="true"] {
+    direction: ltr !important;
+    text-align: center !important;
+    width: 100% !important;
+    margin: 10px 0 !important;
+}
+
+/* List Fixes */
+.ai-rtl-active ul, 
+.ai-rtl-active ol {
+    padding-right: 25px !important;
+    padding-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* User Input Fixes */
+textarea.ai-rtl-active, 
+div[contenteditable="true"].ai-rtl-active {
+    direction: rtl !important;
+    text-align: right !important;
+}
